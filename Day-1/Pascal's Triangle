@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+	public static ArrayList<ArrayList<Long>> printPascal(int n) {
+                 // Write your code here.
+        ArrayList<ArrayList<Long>> al = new ArrayList<ArrayList<Long>>();
+        ArrayList<Long> row;
+        ArrayList<Long> preVal = null;
+        for( int i = 0 ; i < n ; i++){
+            row = new ArrayList<Long>();
+            for( int j = 0 ; j <= i ; j++){
+                if ( j == 0 || j == i){
+                    row.add(1L);
+                } else {
+                    row.add(preVal.get(j-1) + preVal.get(j));
+                }
+            }
+            preVal = row;
+            al.add(row);
+        }
+        return al;
+        
+	}
+}
+/*
+1. if  index is 0 or equal to the last index of the triangle then make the value 1.
+2. else , the preVal row which has the current index and index - 1 value and add them.
+3. point the current row to preVal for next iteration.
+ T(N) = O(N*N) = O(N^2)
+ SC = O(N*N) = O(N^2)
+*/
