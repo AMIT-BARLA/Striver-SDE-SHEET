@@ -1,0 +1,46 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static void setZeros(int matrix[][]) {
+        // Write your code here..
+        int val = 1;
+        int row = matrix.length;
+        int col = matrix[0].length;
+        
+        for ( int i = 0 ; i < row ; i++){
+            if (matrix[i][0] == 0){
+                val = 0;
+            }
+            for( int j = 1 ; j < col ; j++){
+                if (matrix[i][j] == 0){
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+        for ( int i = row - 1 ; i >= 0 ; i--){
+            for( int j = col - 1 ; j >= 1 ; j--){
+                if (matrix[i][0] == 0 || matrix[0][j] == 0){
+                    matrix[i][j] = 0;
+                }
+            }
+            if ( val == 0){
+                matrix[i][0] = 0;
+            }
+        }
+    }
+
+}
+// Link https://www.codingninjas.com/codestudio/problems/set-matrix-zeros_3846774?topList=striver-sde-sheet-problems&leftPanelTab=0
+/* It is done in-place
+ 1. Traverse the array from start to end and check for col '0' if it is 0 or other number. 
+ 2. if matrix in position i and j is 0 then make the left-most postion [i][0] and top-most position [0][j] to 0.
+ 3. Traverse the array from reverse and check for the left-most and top-most postion of that particular index, if any of the position is '0' the make that index '0'.
+ NOTE - we are traversing it from reverse because if in the column 0 has a value 0 then it should not affect the other values in other index.
+ example: point 3
+ input    output
+ 1 2 3    0 0 3
+ 0 1 4    0 0 0
+ 1 0 3    0 0 0
+ 
+*/
