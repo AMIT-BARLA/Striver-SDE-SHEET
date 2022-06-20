@@ -25,6 +25,7 @@ public class Solution {
 	}
 }
 /*
+Link - https://www.codingninjas.com/codestudio/problems/pascal-s-triangle_1089580?topList=striver-sde-sheet-problems&leftPanelTab=0
 1. if  index is 0 or equal to the last index of the triangle then make the value 1.
 2. else , the preVal row which has the current index and index - 1 value and add them.
 3. point the current row to preVal for next iteration.
