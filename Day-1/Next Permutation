@@ -1,0 +1,69 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Solution 
+{
+	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> permutation) 
+	{
+// 		Write your code here.  2 3 1 4 5 -> 2 3 1 5 4 
+        int i = permutation.size() - 2;
+        if ( permutation.size() <= 1){
+            return permutation;
+        }
+        
+        while ( i >= 0 && permutation.get(i) >= permutation.get(i+1)){
+            i--;
+        }
+        
+        if ( i >= 0){
+            int j = permutation.size() - 1;
+            while (permutation.get(i) >= permutation.get(j) ){
+                j--;
+            }
+        Collections.swap(permutation,i,j);          
+        }  
+        
+        int len = permutation.size() - 1;
+        i++;
+        while ( i <= len){
+           Collections.swap(permutation,i,len);
+            ++i;
+            --len;
+        }
+      return permutation;  
+	}
+}
+
+
+/*
+Link - https://www.codingninjas.com/codestudio/problems/next-permutaion_893046?topList=striver-sde-sheet-problems
+
+it is done in-place.
+
+1. traverse from reverse and find the element which is just smaller than last element.
+2. traverse from the back and find the element which is greater than step 1 element.
+3. swap the values of step 1 and 2. 
+4. from step 1 index + 1, reverse elements.
+
+intution behind the algorithm
+              5                     2
+            3   4        =>      4    3
+          1       2            1        5
+
+edge case example:
+321 -> 123
+
+example: 
+123 
+132
+213
+231
+312
+321
+
+T(N) = O(N) + O(N) + O(N) = O(N)   [ step-1  step-2 step-4]
+SC = O(1)
+
+*/
