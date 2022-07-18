@@ -1,0 +1,26 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution{
+    public static int maximumProfit(ArrayList<Integer> prices){
+        // Write your code here.
+        int mx_profit = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for( int i = 0 ; i < prices.size() ; i++){
+            if (prices.get(i) < min){
+                min = prices.get(i);
+            }
+            if (mx_profit < (prices.get(i) - min)){
+                mx_profit = prices.get(i) - min ;
+            }
+        }
+        return mx_profit;
+    }
+}
+/*
+Link - https://www.codingninjas.com/codestudio/problems/stocks-are-profitable_893405?topList=striver-sde-sheet-problems
+Note- first find the minimum then find the max profile and index of i should be greater than min index because we have to buy first then sell it.
+T(n) = O(N)
+
+*/
